@@ -8,6 +8,7 @@ class App extends Component {
     this.state = {
       users: []
     }
+    // this.sortRows = this.sortRows.bind(this);
     this.getStats = this.getStats.bind(this);
   }
 
@@ -21,7 +22,7 @@ class App extends Component {
         // console.log(data);
         // create a copy of the current state
         const newState = this.state;
-        // push the username into the users array
+        // push the users data into the users array in the state
         newState.users.push({
           username: username,
           easySolved: data.easySolved,
@@ -38,6 +39,7 @@ class App extends Component {
     document.getElementById('username-field').value = '';
   }
 
+  // SORTING ALGO?
   // sortRows(a, b) {
   //   if (a.totalSolved < b.totalSolved) {
   //     return -1;
@@ -54,10 +56,12 @@ class App extends Component {
 
   render() {
     const rows = [];
-    const userArr = this.state.users
+    const userArr = this.state.users;
     for (let i = 0; i < userArr.length; i++) {
       rows.push(<Row key={i} username={userArr[i].username} easySolved={userArr[i].easySolved} mediumSolved={userArr[i].mediumSolved} hardSolved={userArr[i].hardSolved} totalSolved={userArr[i].totalSolved} />)
     }
+    // SORT HERE?
+    // rows.sort(this.sortRows);
 
     return (
       <div>
