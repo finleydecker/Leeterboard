@@ -70,17 +70,17 @@ class App extends Component {
           <button id='add-user' onClick={this.getStats}>Add User</button>
         </div>
         <div id="leaderboard">
-          <div id="column-names">
-            <ul>
-              <li>Rank</li>
-              <li>Username</li>
-              <li>Easy</li>
-              <li>Medium</li>
-              <li>Hard</li>
-              <li>Total</li>
-            </ul>
-          </div>
-          {rows}
+          <table>
+            <tr>
+              <th>Rank</th>
+              <th>Username</th>
+              <th>Easy</th>
+              <th>Medium</th>
+              <th>Hard</th>
+              <th>Total</th>
+            </tr>
+            {rows}
+          </table>
         </div>
       </div>
     )

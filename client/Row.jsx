@@ -6,18 +6,16 @@ class Row extends Component {
   }
 
   render() {
+    const profileLink = `https://leetcode.com/${this.props.username}/`;
     return (
-      // <h3>Rank: {this.props.rank} | Username: {this.props.username} | Easy: {this.props.easySolved} | Medium: {this.props.mediumSolved} | Hard: {this.props.hardSolved} | Total: {this.props.totalSolved}</h3>
-      <div id="row-container">
-        <ul id="row">
-          <li>{this.props.rank}</li>
-          <li>{this.props.username}</li>
-          <li>{this.props.easySolved}</li>
-          <li>{this.props.mediumSolved}</li>
-          <li>{this.props.hardSolved}</li>
-          <li>{this.props.totalSolved}</li>
-        </ul>
-      </div>
+      <tr id="row-container">
+        <td>#{this.props.rank}</td>
+        <td><a href={profileLink}>{this.props.username}</a></td>
+        <td>{this.props.easySolved}</td>
+        <td>{this.props.mediumSolved}</td>
+        <td>{this.props.hardSolved}</td>
+        <td>{this.props.totalSolved}</td>
+      </tr>
     )
   }
 }
