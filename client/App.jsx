@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       users: []
     }
-    // this.sortRows = this.sortRows.bind(this);
+    this.sortRows = this.sortRows.bind(this);
     this.getStats = this.getStats.bind(this);
   }
 
@@ -39,16 +39,16 @@ class App extends Component {
     document.getElementById('username-field').value = '';
   }
 
-  // SORTING ALGO?
-  // sortRows(a, b) {
-  //   if (a.totalSolved < b.totalSolved) {
-  //     return -1;
-  //   }
-  //   if (a.totalSolved > b.totalSolved) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // }
+  // leaderboard sorting algo
+  sortRows(a, b) {
+    if (a.totalSolved < b.totalSolved) {
+      return 1;
+    }
+    if (a.totalSolved > b.totalSolved) {
+      return -1;
+    }
+    return 0;
+  }
 
   componentDidMount() {
     // this.getStats('finleydecker');
@@ -56,12 +56,11 @@ class App extends Component {
 
   render() {
     const rows = [];
-    const userArr = this.state.users;
+    // sort the rows by total solved desc
+    const userArr = this.state.users.sort(this.sortRows);
     for (let i = 0; i < userArr.length; i++) {
       rows.push(<Row key={i} username={userArr[i].username} easySolved={userArr[i].easySolved} mediumSolved={userArr[i].mediumSolved} hardSolved={userArr[i].hardSolved} totalSolved={userArr[i].totalSolved} />)
     }
-    // SORT HERE?
-    // rows.sort(this.sortRows);
 
     return (
       <div>
