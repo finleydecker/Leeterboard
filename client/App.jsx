@@ -59,16 +59,27 @@ class App extends Component {
     // sort the rows by total solved desc
     const userArr = this.state.users.sort(this.sortRows);
     for (let i = 0; i < userArr.length; i++) {
-      rows.push(<Row key={i} username={userArr[i].username} easySolved={userArr[i].easySolved} mediumSolved={userArr[i].mediumSolved} hardSolved={userArr[i].hardSolved} totalSolved={userArr[i].totalSolved} />)
+      rows.push(<Row key={i} rank={i + 1} username={userArr[i].username} easySolved={userArr[i].easySolved} mediumSolved={userArr[i].mediumSolved} hardSolved={userArr[i].hardSolved} totalSolved={userArr[i].totalSolved} />)
     }
 
     return (
       <div>
         <h1 >Leeterboard</h1>
-        <label htmlFor="username">Username:</label><br></br>
-        <input type="text" id="username-field" name="username" />
-        <button id='add-user' onClick={this.getStats}>Add User</button>
+        <div id='input-container'>
+          <input type="text" id="username-field" name="username" placeholder='Enter LeetCode username here...' />
+          <button id='add-user' onClick={this.getStats}>Add User</button>
+        </div>
         <div id="leaderboard">
+          <div id="column-names">
+            <ul>
+              <li>Rank</li>
+              <li>Username</li>
+              <li>Easy</li>
+              <li>Medium</li>
+              <li>Hard</li>
+              <li>Total</li>
+            </ul>
+          </div>
           {rows}
         </div>
       </div>

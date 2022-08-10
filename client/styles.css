@@ -1,5 +1,77 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #749cad;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+#input-container {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
+
+input {
+  height: 25px;
+  width: 240px;
+  text-indent: 10px;
+}
+
+button {
+  width: 100px;
+}
+
 #leaderboard {
-  height: 1000px;
-  width: 1000px;
+  height: 500px;
+  width: 100%;
   border: 1px solid black
+}
+
+#column-names {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 1000px;
+  border-bottom: 1px solid black;
+  font-size: 16px;
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+li {
+  display: inline;
+  font-weight: bold;
+}
+
+#row-container {
+  border-bottom: 1px solid black;
+}
+
+#row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+#row li {
+  display: inline;
 }
