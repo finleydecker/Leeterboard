@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      users: []
+      users: [] // holds all data from db
     }
     this.sortRows = this.sortRows.bind(this);
     this.getStats = this.getStats.bind(this);
