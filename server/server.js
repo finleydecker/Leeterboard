@@ -1,31 +1,45 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const Router = require('./routes');
-
 const app = express();
+const mongoose = require('mongoose');
 
-// handle parsing request body
-app.use(express.json());
+const userController = require('./userController');
+const User = require('./userModel');
 
-const username = 'finleydecker';
-const password = 'avermentvaliancewhoseverpositionlit';
-const cluster = 'cluster0.uzowd';
-const dbname = 'leeterboardUsers';
+const PORT = 3000;
 
-mongoose.connect(`mongodb+srv://${username}:${[password]}@${cluster}.mongodb.net/${dbname}`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-  console.log("Connected successfully");
+mongoose.connect('mongodb+srv://leetadmin:breakcanonizeapproveprobityheadrest@cluster0.uyslkc5.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
 });
 
-app.use(Router);
+// handle parsing request body
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.listen(3000, () => {
+const userRouter = express.Router();
+app.use('/', userRouter);
+
+// Create a student in the database
+// http://localhost:3000/
+userRouter.post('/', userController.createUser, (req, res, next) => {
+  res.sendStatus(200);
+});
+
+// Unknown route handler
+app.use((req, res) => res.sendStatus(404));
+
+// Global error handler
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+});
+
+app.listen(PORT, () => {
   console.log("Server is running at port 3000");
 });
