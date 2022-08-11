@@ -16,30 +16,6 @@ class App extends Component {
   getStats() {
     // get the inputted username
     const username = document.getElementById('username-field').value;
-    // WORKING CODE
-    // fetch the stats for that user
-    // fetch(`https://leetcode-stats-api.herokuapp.com/${username}`)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     // console.log(data);
-    //     // create a copy of the current state
-    //     const newState = this.state;
-    //     // push the users data into the users array in the state
-    //     newState.users.push({
-    //       username: username,
-    //       easySolved: data.easySolved,
-    //       mediumSolved: data.mediumSolved,
-    //       hardSolved: data.hardSolved,
-    //       totalSolved: data.totalSolved
-    //     });
-
-    //     // set the state to be the new state
-    //     this.setState({ state: newState });
-    //     // console.log(this.state);
-    //   });
-
-    // TESTING AREA
-
     //  fetch the stats for that user
     fetch(`https://leetcode-stats-api.herokuapp.com/${username}`)
       .then(res => res.json())
@@ -57,8 +33,6 @@ class App extends Component {
           method: "POST",
           body: JSON.stringify(data)
         })
-        // .then(console.log('success'));
-        // .then(result => console.log(result));
       });
   }
 

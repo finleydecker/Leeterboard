@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 
 const userController = require('./userController');
-const User = require('./userModel');
 
 const cors = require('cors');
 
