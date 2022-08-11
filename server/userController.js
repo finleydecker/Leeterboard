@@ -1,6 +1,13 @@
 const User = require('./userModel');
 
 const UserController = {
+
+  getAllUsers(req, res, next) {
+    const allUsers = User.find({}, (err, users) => {
+      res.send(users);
+    });
+  },
+
   createUser(req, res, next) {
     const info = req.body;
     // console.log('req body is: ', info);
@@ -16,7 +23,7 @@ const UserController = {
       if (err) {
         return next(err);
       } else {
-        console.log('saved user is:', user);
+        // console.log('saved user is:', user);
         return next();
       }
     });
