@@ -14,6 +14,16 @@ h1 {
   letter-spacing: 1px;
 }
 
+h1:hover {
+  scale: 1.04;
+}
+
+#logo {
+  height: 40px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
 #input-container {
   display: flex;
   justify-content: center;
@@ -37,6 +47,7 @@ input::placeholder {
 
 input:hover {
   background-color: #4f4f4f;
+  scale: 1.01;
 }
 
 input:focus {
@@ -55,6 +66,7 @@ button {
 
 button:hover {
   background-color: #4f4f4f;
+  scale: 1.01;
 }
 
 table {
@@ -63,6 +75,11 @@ table {
   border-collapse: collapse;
   background-color: #373737;
   border-radius: 10px;
+}
+
+#row-container:hover {
+  opacity: 90%;
+  scale: 1.0001;
 }
 
 tr:nth-child(even) {
@@ -103,4 +120,8 @@ a:hover {
 
 #more-problems a {
   color: #F2A732;
+}
+
+#more-problems:hover {
+  scale: 1.01;
 }

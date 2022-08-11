@@ -67,7 +67,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1 >Leeterboard</h1>
+        <h1 ><a target="_blank" href="https://leetcode.com/"><img id='logo' src="https://upload.wikimedia.org/wikipedia/commons/8/8e/LeetCode_Logo_1.png" alt="" /></a>Leeterboard</h1>
         <div id='input-container'>
           <input type="text" id="username-field" name="username" placeholder='Enter LeetCode username here...' onKeyDown={this.handleKeyDown} />
           <button id='add-user' onClick={this.getStats}>Add User</button>
