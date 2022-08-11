@@ -1,9 +1,13 @@
+const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
 
 const userController = require('./userController');
 const User = require('./userModel');
+
+const cors = require('cors');
+
+app.use(cors());
 
 const PORT = 3000;
 
@@ -13,8 +17,8 @@ mongoose.connection.once('open', () => {
 });
 
 // handle parsing request body
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const userRouter = express.Router();
 app.use('/', userRouter);
