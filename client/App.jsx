@@ -10,6 +10,7 @@ class App extends Component {
     }
     this.sortRows = this.sortRows.bind(this);
     this.getStats = this.getStats.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   getStats() {
@@ -50,8 +51,10 @@ class App extends Component {
     return 0;
   }
 
-  componentDidMount() {
-    // this.getStats('finleydecker');
+  handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      this.getStats();
+    }
   }
 
   render() {
@@ -66,7 +69,7 @@ class App extends Component {
       <div>
         <h1 >Leeterboard</h1>
         <div id='input-container'>
-          <input type="text" id="username-field" name="username" placeholder='Enter LeetCode username here...' />
+          <input type="text" id="username-field" name="username" placeholder='Enter LeetCode username here...' onKeyDown={this.handleKeyDown} />
           <button id='add-user' onClick={this.getStats}>Add User</button>
         </div>
         <div id="leaderboard">
@@ -81,6 +84,9 @@ class App extends Component {
             </tr>
             {rows}
           </table>
+        </div>
+        <div id='footer'>
+          <button id='more-problems'><a target="_blank" href='https://leetcode.com/problemset/all/'>Do more problems!</a></button>
         </div>
       </div>
     )
