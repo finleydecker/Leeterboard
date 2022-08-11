@@ -3,7 +3,7 @@ const User = require('./userModel');
 const UserController = {
   createUser(req, res, next) {
     const info = req.body;
-    console.log('req body is: ', info);
+    // console.log('req body is: ', info);
     const newUser = new User({
       username: info.username,
       easySolved: info.easySolved,
@@ -11,7 +11,7 @@ const UserController = {
       hardSolved: info.hardSolved,
       totalSolved: info.totalSolved
     });
-    console.log('my new user is: ', newUser);
+    // console.log('my new user is: ', newUser);
     newUser.save((err, user) => {
       if (err) {
         return next(err);
