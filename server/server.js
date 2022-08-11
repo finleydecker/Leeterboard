@@ -1,29 +1,31 @@
 const express = require('express');
-const PORT = 3000;
-const path = require('path');
+const mongoose = require('mongoose');
+const Router = require('./routes');
+
 const app = express();
 
 // handle parsing request body
 app.use(express.json());
 
-// shows the index.html page but no react stuff
-app.use(express.static(path.resolve(__dirname, '../client')));
+const username = 'finleydecker';
+const password = 'avermentvaliancewhoseverpositionlit';
+const cluster = 'cluster0.uzowd';
+const dbname = 'leeterboardUsers';
 
-// app.get('*', (req, res) => {
-//   res.sendFile(HTML_FILE);
-// });
+mongoose.connect(`mongodb+srv://${username}:${[password]}@${cluster}.mongodb.net/${dbname}`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 
-// app.get('https://leetcode-stats-api.herokuapp.com/finleydecker'), (req, res) => {
-//   console.log(res);
-// }
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+  console.log("Connected successfully");
+});
 
+app.use(Router);
 
-// // serve index.html on the route '/'
-// app.get('/', (req, res) => {
-//   return res.status(200).sendFile(path.join(__dirname, '../client'));
-// });
-
-
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}...`);
+app.listen(3000, () => {
+  console.log("Server is running at port 3000");
 });
