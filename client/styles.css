@@ -78,8 +78,7 @@ table {
 }
 
 #row-container:hover {
-  opacity: 90%;
-  scale: 1.0001;
+  opacity: 85%;
 }
 
 tr:nth-child(even) {

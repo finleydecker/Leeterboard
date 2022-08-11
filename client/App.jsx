@@ -11,6 +11,35 @@ class App extends Component {
     this.sortRows = this.sortRows.bind(this);
     this.getStats = this.getStats.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.refreshUsers = this.refreshUsers.bind(this);
+  }
+
+  // when the page is loaded, fetch all users from the database and setState
+  componentDidMount() {
+    fetch('http://localhost:3000/')
+      .then(res => res.json())
+      .then(users => {
+        // declare new state variable
+        const newState = this.state;
+        // add the current users in the database to the new state
+        newState.users = users;
+        // set the state to be the new state
+        this.setState({ state: newState });
+      })
+  }
+
+  // when getStats is called, run refreshUsers to show the newState
+  refreshUsers() {
+    fetch('http://localhost:3000/')
+      .then(res => res.json())
+      .then(users => {
+        // declare new state variable
+        const newState = this.state;
+        // add the current users in the database to the new state
+        newState.users = users;
+        // set the state to be the new state
+        this.setState({ state: newState });
+      })
   }
 
   getStats() {
@@ -22,17 +51,19 @@ class App extends Component {
       .then(data => {
         // add username key/value pair to data object
         data.username = username;
-        console.log('my data is: ', data);
+        // console.log('my data is: ', data);
         // clear input field
         document.getElementById('username-field').value = '';
         // send the data object to the server to save it to the database
-        return fetch('http://localhost:3000/', {
+        fetch('http://localhost:3000/', {
           headers: {
             "Content-Type": "application/json"
           },
           method: "POST",
           body: JSON.stringify(data)
         })
+          // after the user is saved to the database, refresh the users on the page
+          .then(this.refreshUsers);
       });
   }
 
