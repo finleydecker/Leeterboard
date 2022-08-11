@@ -16,16 +16,7 @@ class App extends Component {
 
   // when the page is loaded, fetch all users from the database and setState
   componentDidMount() {
-    fetch('http://localhost:3000/')
-      .then(res => res.json())
-      .then(users => {
-        // declare new state variable
-        const newState = this.state;
-        // add the current users in the database to the new state
-        newState.users = users;
-        // set the state to be the new state
-        this.setState({ state: newState });
-      })
+    this.refreshUsers();
   }
 
   // when getStats is called, run refreshUsers to show the newState
