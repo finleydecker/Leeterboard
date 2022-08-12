@@ -15,7 +15,7 @@ h1 {
 }
 
 h1:hover {
-  scale: 1.04;
+  /* scale: 1.04; */
 }
 
 #logo {
@@ -27,7 +27,7 @@ h1:hover {
 #input-container {
   display: flex;
   justify-content: center;
-  margin: 50px;
+  margin: 25px;
 }
 
 input {
@@ -47,7 +47,7 @@ input::placeholder {
 
 input:hover {
   background-color: #4f4f4f;
-  scale: 1.01;
+  /* scale: 1.01; */
 }
 
 input:focus {
@@ -66,7 +66,7 @@ button {
 
 button:hover {
   background-color: #4f4f4f;
-  scale: 1.01;
+  /* scale: 1.01; */
 }
 
 table {
@@ -75,6 +75,10 @@ table {
   border-collapse: collapse;
   background-color: #373737;
   border-radius: 10px;
+}
+
+#row-container {
+  cursor: pointer;
 }
 
 #row-container:hover {
@@ -86,12 +90,15 @@ tr:nth-child(even) {
   border-radius: 10px;
 }
 
+.rowOnClick {
+  border: .01px solid #d9c5a4;
+}
+
 th,
 td {
   text-align: center;
   padding: 8px;
 }
-
 
 a {
   text-decoration: none;
@@ -104,17 +111,18 @@ a:hover {
 }
 
 #footer {
-  margin: 50px 0;
+  margin: 25px 0;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
 #more-problems {
-  width: 200px;
-  height: 40px;
-  font-size: 16px;
+  width: 175px;
+  height: 25px;
+  /* font-size: 16px; */
   cursor: pointer;
+  margin-right: 30px;
 }
 
 #more-problems a {
@@ -122,5 +130,11 @@ a:hover {
 }
 
 #more-problems:hover {
-  scale: 1.01;
+  /* scale: 1.01; */
+}
+
+#menu {
+  height: 20px;
+  width: 20px;
+  color: blue;
 }
