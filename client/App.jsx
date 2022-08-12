@@ -43,8 +43,8 @@ class App extends Component {
             body: JSON.stringify(data)
           })
         })
-      // (stuff happens in the controller)
-      // call refresh users function to update the app
+        // call refresh users function to update the app
+        .then(this.refreshUsers);
     }
   }
 
@@ -137,7 +137,8 @@ class App extends Component {
       rows.push(<Row key={i} click={event => this.handleRowClick(event)} rank={i + 1} username={userArr[i].username} easySolved={userArr[i].easySolved} mediumSolved={userArr[i].mediumSolved} hardSolved={userArr[i].hardSolved} totalSolved={userArr[i].totalSolved} />)
     }
 
-    // setTimeout(this.updateUserStats, 3000);
+    // every 24 hours, update user stats
+    setInterval(this.updateUserStats, 86400000);
 
     return (
       <div>

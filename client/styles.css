@@ -14,10 +14,6 @@ h1 {
   letter-spacing: 1px;
 }
 
-h1:hover {
-  /* scale: 1.04; */
-}
-
 #logo {
   height: 40px;
   margin-right: 5px;
@@ -47,7 +43,6 @@ input::placeholder {
 
 input:hover {
   background-color: #4f4f4f;
-  /* scale: 1.01; */
 }
 
 input:focus {
@@ -66,7 +61,6 @@ button {
 
 button:hover {
   background-color: #4f4f4f;
-  /* scale: 1.01; */
 }
 
 table {
@@ -117,24 +111,17 @@ a:hover {
   justify-content: center;
 }
 
+#delete-button {
+  color: rgb(216, 75, 75);
+}
+
 #more-problems {
   width: 175px;
   height: 25px;
-  /* font-size: 16px; */
   cursor: pointer;
   margin-right: 30px;
 }
 
 #more-problems a {
   color: #F2A732;
-}
-
-#more-problems:hover {
-  /* scale: 1.01; */
-}
-
-#menu {
-  height: 20px;
-  width: 20px;
-  color: blue;
 }
