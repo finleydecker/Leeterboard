@@ -36,6 +36,12 @@ userRouter.post('/', userController.createUser, (req, res, next) => {
   res.sendStatus(200);
 });
 
+// Create a user in the database
+// http://localhost:3000/
+userRouter.delete('/', userController.deleteUser, (req, res, next) => {
+  res.sendStatus(200);
+});
+
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
 

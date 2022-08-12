@@ -91,7 +91,7 @@ tr:nth-child(even) {
 }
 
 .rowOnClick {
-  border: .01px solid #d9c5a4;
+  border: .5px solid #d9c5a4;
 }
 
 th,

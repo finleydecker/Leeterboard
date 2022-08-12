@@ -13,6 +13,7 @@ class App extends Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.refreshUsers = this.refreshUsers.bind(this);
     this.handleRowClick = this.handleRowClick.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   // when the page is loaded, fetch all users from the database and setState
@@ -78,11 +79,26 @@ class App extends Component {
 
   handleRowClick(event) {
     // get the row with the rowOnClick class
-    let el = document.getElementsByClassName('rowOnClick');
+    const el = document.getElementsByClassName('rowOnClick');
     // remove the rowOnClick class
     if (el.length === 1) el[0].classList.remove('rowOnClick')
     // add the class to the element you clicked
     event.target.parentNode.classList.add('rowOnClick');
+  }
+
+  deleteUser() {
+    // get the users name from the element with the rowOnClick class
+    const userToDelete = document.getElementsByClassName('rowOnClick')[0].firstChild.nextSibling.textContent;
+    // send delete request to my server
+    fetch('http://localhost:3000/', {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE",
+      body: JSON.stringify(userToDelete)
+    })
+      // after the user is deleted from the database, refresh the users on the page
+      .then(this.refreshUsers);
   }
 
   render() {
@@ -115,7 +131,7 @@ class App extends Component {
         </div>
         <div id='footer'>
           <button id='more-problems'><a target="_blank" href='https://leetcode.com/problemset/all/'>Do more problems!</a></button>
-          <button id='delete-button'>Delete User</button>
+          <button id='delete-button' onClick={this.deleteUser}>Delete User</button>
         </div>
       </div>
     )
