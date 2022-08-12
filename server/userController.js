@@ -29,6 +29,19 @@ const UserController = {
     });
   },
 
+  updateUsers(req, res, next) {
+    // receive each users stats
+    console.log('req body is: ', req.body);
+    // find and update each user by matching usernames
+    User.findOneAndUpdate({ username: req.body.username }, (err, user) => {
+      if (err) {
+        return next(err);
+      } else {
+        return next();
+      }
+    })
+  },
+
   deleteUser(req, res, next) {
     // console.log('req body is: ', req.body);
     const nameToDelete = req.body.username;
