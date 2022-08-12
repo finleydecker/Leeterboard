@@ -30,8 +30,8 @@ const UserController = {
   },
 
   deleteUser(req, res, next) {
-    // pull name from button
-    const nameToDelete = ''; // <- incomplete
+    console.log('req body is: ', req.body);
+    const nameToDelete = req.body;
     User.findOneAndDelete({ username: nameToDelete }, (err, student) => {
       // error handling
       if (nameToDelete === null) {
