@@ -14,11 +14,38 @@ class App extends Component {
     this.refreshUsers = this.refreshUsers.bind(this);
     this.handleRowClick = this.handleRowClick.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
+    this.updateUserStats = this.updateUserStats.bind(this);
   }
 
   // when the page is loaded, fetch all users from the database and setState
   componentDidMount() {
     this.refreshUsers();
+  }
+
+  // update the user stats every day
+  updateUserStats() {
+    // iterate through the users array in the state
+    for (let i = 0; i < this.state.users.length; i++) {
+      // pull each username
+      let username = this.state.users[i].username;
+      // fetch each users data
+      fetch(`https://leetcode-stats-api.herokuapp.com/${username}`)
+        .then(res => res.json())
+        .then(data => {
+          // add username key/value pair to data object
+          data.username = username;
+          // make a patch request for each user
+          fetch('http://localhost:3000/', {
+            headers: {
+              "Content-Type": "application/json"
+            },
+            method: "PATCH",
+            body: JSON.stringify(data)
+          })
+        })
+      // (stuff happens in the controller)
+      // call refresh users function to update the app
+    }
   }
 
   // when getStats is called, run refreshUsers to show the newState
@@ -102,12 +129,15 @@ class App extends Component {
   }
 
   render() {
+
     const rows = [];
     // sort the rows by total solved desc
     const userArr = this.state.users.sort(this.sortByTotal);
     for (let i = 0; i < userArr.length; i++) {
       rows.push(<Row key={i} click={event => this.handleRowClick(event)} rank={i + 1} username={userArr[i].username} easySolved={userArr[i].easySolved} mediumSolved={userArr[i].mediumSolved} hardSolved={userArr[i].hardSolved} totalSolved={userArr[i].totalSolved} />)
     }
+
+    // setTimeout(this.updateUserStats, 3000);
 
     return (
       <div>
