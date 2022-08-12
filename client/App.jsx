@@ -8,10 +8,11 @@ class App extends Component {
     this.state = {
       users: [] // holds all data from db
     }
-    this.sortRows = this.sortRows.bind(this);
+    this.sortByTotal = this.sortByTotal.bind(this);
     this.getStats = this.getStats.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.refreshUsers = this.refreshUsers.bind(this);
+    this.handleRowClick = this.handleRowClick.bind(this);
   }
 
   // when the page is loaded, fetch all users from the database and setState
@@ -59,7 +60,7 @@ class App extends Component {
   }
 
   // leaderboard sorting algo
-  sortRows(a, b) {
+  sortByTotal(a, b) {
     if (a.totalSolved < b.totalSolved) {
       return 1;
     }
@@ -75,12 +76,21 @@ class App extends Component {
     }
   }
 
+  handleRowClick(event) {
+    // get the row with the rowOnClick class
+    let el = document.getElementsByClassName('rowOnClick');
+    // remove the rowOnClick class
+    if (el.length === 1) el[0].classList.remove('rowOnClick')
+    // add the class to the element you clicked
+    event.target.parentNode.classList.add('rowOnClick');
+  }
+
   render() {
     const rows = [];
     // sort the rows by total solved desc
-    const userArr = this.state.users.sort(this.sortRows);
+    const userArr = this.state.users.sort(this.sortByTotal);
     for (let i = 0; i < userArr.length; i++) {
-      rows.push(<Row key={i} rank={i + 1} username={userArr[i].username} easySolved={userArr[i].easySolved} mediumSolved={userArr[i].mediumSolved} hardSolved={userArr[i].hardSolved} totalSolved={userArr[i].totalSolved} />)
+      rows.push(<Row key={i} click={event => this.handleRowClick(event)} rank={i + 1} username={userArr[i].username} easySolved={userArr[i].easySolved} mediumSolved={userArr[i].mediumSolved} hardSolved={userArr[i].hardSolved} totalSolved={userArr[i].totalSolved} />)
     }
 
     return (
@@ -97,7 +107,7 @@ class App extends Component {
               <th>Username</th>
               <th>Easy</th>
               <th>Medium</th>
-              <th>Hard</th>
+              <th >Hard</th>
               <th>Total</th>
             </tr>
             {rows}
@@ -105,6 +115,7 @@ class App extends Component {
         </div>
         <div id='footer'>
           <button id='more-problems'><a target="_blank" href='https://leetcode.com/problemset/all/'>Do more problems!</a></button>
+          <button id='delete-button'>Delete User</button>
         </div>
       </div>
     )

@@ -8,7 +8,7 @@ class Row extends Component {
   render() {
     const profileLink = `https://leetcode.com/${this.props.username}/`;
     return (
-      <tr id="row-container">
+      <tr id="row-container" onClick={this.props.click}>
         <td>#{this.props.rank}</td>
         <td><a target="_blank" href={profileLink}>{this.props.username}</a></td>
         <td>{this.props.easySolved}</td>
