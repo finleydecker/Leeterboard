@@ -95,7 +95,7 @@ class App extends Component {
         "Content-Type": "application/json"
       },
       method: "DELETE",
-      body: JSON.stringify(userToDelete)
+      body: JSON.stringify({ username: userToDelete })
     })
       // after the user is deleted from the database, refresh the users on the page
       .then(this.refreshUsers);
