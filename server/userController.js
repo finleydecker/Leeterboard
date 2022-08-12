@@ -30,9 +30,9 @@ const UserController = {
   },
 
   deleteUser(req, res, next) {
-    console.log('req body is: ', req.body);
-    const nameToDelete = req.body;
-    User.findOneAndDelete({ username: nameToDelete }, (err, student) => {
+    // console.log('req body is: ', req.body);
+    const nameToDelete = req.body.username;
+    User.findOneAndDelete({ username: nameToDelete }, (err, user) => {
       // error handling
       if (nameToDelete === null) {
         return next({ err });
