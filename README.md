@@ -10,7 +10,7 @@ stats. Get motivated and battle for the top rank!
 
 <hr>
 
-### _How to use_
+### How to use
 
 To use, simply enter your LeetCode username and click the 'Add User' button.
 Your LeetCode stats will then be added to the Leeterboard.
