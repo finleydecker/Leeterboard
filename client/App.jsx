@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import '/client/styles.css'
+import '/client/styles.css';
 import Row from './Row';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       users: [] // holds all data from db
-    }
+    };
     this.sortByTotal = this.sortByTotal.bind(this);
     this.getStats = this.getStats.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -27,7 +27,7 @@ class App extends Component {
     // iterate through the users array in the state
     for (let i = 0; i < this.state.users.length; i++) {
       // pull each username
-      let username = this.state.users[i].username;
+      const username = this.state.users[i].username;
       // fetch each users data
       fetch(`https://leetcode-stats-api.herokuapp.com/${username}`)
         .then(res => res.json())
@@ -37,11 +37,11 @@ class App extends Component {
           // make a patch request for each user
           fetch('http://localhost:3000/', {
             headers: {
-              "Content-Type": "application/json"
+              'Content-Type': 'application/json'
             },
-            method: "PATCH",
+            method: 'PATCH',
             body: JSON.stringify(data)
-          })
+          });
         })
         // call refresh users function to update the app
         .then(this.refreshUsers);
@@ -59,7 +59,7 @@ class App extends Component {
         newState.users = users;
         // set the state to be the new state
         this.setState({ state: newState });
-      })
+      });
   }
 
   getStats() {
@@ -76,9 +76,9 @@ class App extends Component {
         // send the data object to the server to save it to the database
         fetch('http://localhost:3000/', {
           headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
           },
-          method: "POST",
+          method: 'POST',
           body: JSON.stringify(data)
         })
           // after the user is saved to the database, refresh the users on the page
@@ -118,9 +118,9 @@ class App extends Component {
     // send delete request to my server
     fetch('http://localhost:3000/', {
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
-      method: "DELETE",
+      method: 'DELETE',
       body: JSON.stringify({ username: userToDelete })
     })
       // after the user is deleted from the database, refresh the users on the page
@@ -141,7 +141,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1 ><a target="_blank" href="https://leetcode.com/"><img id='logo' src="https://upload.wikimedia.org/wikipedia/commons/8/8e/LeetCode_Logo_1.png" alt="" /></a>Leeterboard</h1>
+        <h1 ><a target="_blank" href="https://leetcode.com/" rel="noreferrer"><img id='logo' src="https://upload.wikimedia.org/wikipedia/commons/8/8e/LeetCode_Logo_1.png" alt="" /></a>Leeterboard</h1>
         <div id='input-container'>
           <input type="text" id="username-field" name="username" placeholder='Enter LeetCode username here...' onKeyDown={this.handleKeyDown} />
           <button id='add-user' onClick={this.getStats}>Add User</button>
@@ -160,11 +160,11 @@ class App extends Component {
           </table>
         </div>
         <div id='footer'>
-          <button id='more-problems'><a target="_blank" href='https://leetcode.com/problemset/all/'>Do more problems!</a></button>
+          <button id='more-problems'><a target="_blank" href='https://leetcode.com/problemset/all/' rel="noreferrer">Do more problems!</a></button>
           <button id='delete-button' onClick={this.deleteUser}>Delete User</button>
         </div>
       </div>
-    )
+    );
   }
 }
 

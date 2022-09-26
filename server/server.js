@@ -6,7 +6,6 @@ const userController = require('./userController');
 
 const cors = require('cors');
 const UserController = require('./userController');
-const { getAllUsers } = require('./userController');
 
 app.use(cors());
 
@@ -27,7 +26,7 @@ app.use('/', userRouter);
 // Get all users in the database
 userRouter.get('/', UserController.getAllUsers, (req, res, next) => {
   res.sendStatus(200);
-})
+});
 
 // Create a user in the database
 userRouter.post('/', userController.createUser, (req, res, next) => {
@@ -60,5 +59,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log("Server is running at port 3000");
+  console.log('Server is running at port 3000');
 });
