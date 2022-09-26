@@ -71,7 +71,6 @@ class App extends Component {
       .then(data => {
         // add username key/value pair to data object
         data.username = username;
-        // console.log('my data is: ', data);
         // clear input field
         document.getElementById('username-field').value = '';
         // send the data object to the server to save it to the database
