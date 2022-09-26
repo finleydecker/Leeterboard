@@ -25,25 +25,21 @@ const userRouter = express.Router();
 app.use('/', userRouter);
 
 // Get all users in the database
-// http://localhost:3000/
 userRouter.get('/', UserController.getAllUsers, (req, res, next) => {
   res.sendStatus(200);
 })
 
 // Create a user in the database
-// http://localhost:3000/
 userRouter.post('/', userController.createUser, (req, res, next) => {
   res.sendStatus(200);
 });
 
 // Update all users in the database
-// http://localhost:3000/
 userRouter.patch('/', userController.updateUsers, (req, res, next) => {
   res.sendStatus(200);
 });
 
 // Delete a user in the database
-// http://localhost:3000/
 userRouter.delete('/', userController.deleteUser, (req, res, next) => {
   res.sendStatus(200);
 });

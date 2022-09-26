@@ -10,7 +10,6 @@ const UserController = {
 
   createUser(req, res, next) {
     const info = req.body;
-    // console.log('req body is: ', info);
     const newUser = new User({
       username: info.username,
       easySolved: info.easySolved,
@@ -18,12 +17,10 @@ const UserController = {
       hardSolved: info.hardSolved,
       totalSolved: info.totalSolved
     });
-    // console.log('my new user is: ', newUser);
     newUser.save((err, user) => {
       if (err) {
         return next(err);
       } else {
-        // console.log('saved user is:', user);
         return next();
       }
     });
@@ -31,7 +28,6 @@ const UserController = {
 
   updateUsers(req, res, next) {
     // receive each users stats
-    console.log('req body is: ', req.body);
     // find and update each user by matching usernames
     User.findOneAndUpdate({ username: req.body.username }, (err, user) => {
       if (err) {
@@ -43,7 +39,6 @@ const UserController = {
   },
 
   deleteUser(req, res, next) {
-    // console.log('req body is: ', req.body);
     const nameToDelete = req.body.username;
     User.findOneAndDelete({ username: nameToDelete }, (err, user) => {
       // error handling
