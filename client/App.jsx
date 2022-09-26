@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '/client/styles.css';
+import './styles.css';
 import Row from './Row';
 
 class App extends Component {
