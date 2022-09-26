@@ -35,7 +35,7 @@ const UserController = {
       } else {
         return next();
       }
-    })
+    });
   },
 
   deleteUser(req, res, next) {
